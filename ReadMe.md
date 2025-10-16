@@ -22,20 +22,24 @@ A small web/mobile project that provides a product catalog and a simple shopping
 (Adjust to your framework: create-react-app, Vite, Next.js, etc.)
 
 ## Project structure (suggested)
-- /src
-  - /components
-     - ProductList.jsx
-     - ProductCard.jsx
-     - Cart.jsx
-  - /data
-     - products.json
-  - /utils
-     - cart.js
-  - App.jsx
-- public
-- package.json
-- README.md
-
+my-product-list/
+├─ index.html
+├─ package.json
+├─ vite.config.js
+├─ data.json
+├─ public/
+│ └─ assets/ (изображения)
+└─ src/
+├─ main.jsx
+├─ App.jsx
+├─ index.css
+├─ components/
+│ ├─ ProductCard.jsx
+│ ├─ ProductList.jsx
+│ ├─ Cart.jsx
+│ └─ Modal.jsx
+└─ hooks/
+└─ useLocalStorage.js
 ## Example product list (products.json)
 [
   {
