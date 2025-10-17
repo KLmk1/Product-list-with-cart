@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductList from './components/ProductList/ProductList';
 import Cart from './components/Cart/Cart';
 import Modal from './components/Modal/Modal';
