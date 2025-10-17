@@ -1,4 +1,4 @@
-import { MenuPage } from "./components/menuPage/menuPage.jsx";
+import MenuPage from "./components/menuPage/menuPage.jsx";
 
 export default function App() {
   return (
