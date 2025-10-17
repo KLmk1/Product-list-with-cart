@@ -4,7 +4,7 @@ const ProductCard = ({ item }) => {
   return (
     <article className={styles.card}>
       <img
-        src={item.image.thumbnail}
+        src={item.image.desktop}
         alt={item.name}
         className={styles.image}
       />
