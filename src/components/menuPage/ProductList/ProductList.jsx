@@ -1,6 +1,5 @@
-import ProductCard from "../ProductCard/ProductCard";
-import products from "./products.json";
-
+import ProductCard from "./ProductCard/ProductCard";
+import data from "../../../data/products.json";
 /**
  * Simple ProductList component
  * - expects a local products.json (array of product objects)
@@ -8,14 +7,10 @@ import products from "./products.json";
  */
 
 const ProductList = () => {
-    if (!Array.isArray(products) || products.length === 0) {
-        return <div className="product-list empty">No products available.</div>;
-    }
-
     return (
         <div className="product-list">
-            {products.map((product) => (
-                <ProductCard key={product.id ?? product.title} {...product} />
+            {data.map((item, index) => (
+                <ProductCard key={index} item={item} />
             ))}
         </div>
     );
