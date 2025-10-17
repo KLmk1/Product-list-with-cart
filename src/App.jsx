@@ -1,13 +1,9 @@
-import ProductList from './components/ProductList/ProductList';
-import Cart from './components/Cart/Cart';
-import Modal from './components/Modal/Modal';
+import { MenuPage } from "./components/menuPage/menuPage.jsx";
 
 export default function App() {
   return (
     <div className="app">
-      <ProductList />
-      <Cart />
-      <Modal />
+      <MenuPage />
     </div>
   );
 }
