@@ -1,0 +1,28 @@
+
+
+.card {
+    display: inline-block;
+}
+
+.price {
+    font-weight: 600;
+    color: var(--red);
+    margin: 0;
+}
+
+.category {
+    font-size: 0.875rem;
+    color: var(--rose-400);
+    margin: 0;
+    font-weight: 500;
+}
+
+.title {
+    margin: 0;
+}
+
+
+.imgwrapper {
+    position: relative;
+    margin-bottom: 1rem;
+}

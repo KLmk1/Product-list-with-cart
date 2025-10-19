@@ -1,0 +1,88 @@
+.cardimage {
+    border-radius: 0.5rem;
+    width: 100%;
+    position: relative;
+    border: solid 2px; /* прозрачная граница по умолчанию */
+}
+
+.overlay {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 70%;
+  margin-top: -1.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--red);
+  border-radius: 1.5rem;
+  cursor: pointer;
+  z-index: 5;
+  box-sizing: border-box;
+  user-select: none;
+  height: 2.5rem;
+  
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center;     /* по вертикали */
+  pointer-events: auto;
+}
+
+.spoilerwrapper {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  
+  justify-content: center; /* center flex items horizontally, in this case */
+  align-items: center; /* center flex items vertically, in this case */
+  width: auto;
+}
+
+.actions {
+  position: absolute; /* вместо display: absolute */
+  display: flex;      /* чтобы flex всё ещё работал */
+  gap: 2rem;
+  align-items: center;
+  pointer-events: auto;
+}
+
+
+.cartimg {
+    display: inline-block;
+}
+
+.spoiler {
+    display: inline-block;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+
+button {
+  cursor: pointer;
+  border: solid 1px var(--rose-100);
+  border-radius: 999px;
+  background: none;
+  
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center;     /* по вертикали */
+}
+
+.addbutton {
+  height: 1rem;
+  width: 1rem;
+}
+
+.minbutton { 
+  height: 1rem;
+  width: 1rem;
+}
+
+.quantity {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: white;
+    margin: 0 0.5rem;
+}

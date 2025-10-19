@@ -1,18 +1,23 @@
 import ProductCard from "./ProductCard/ProductCard";
 import data from "../../../data/products.json";
-/**
- * Simple ProductList component
- * - expects a local products.json (array of product objects)
- * - expects a ProductCard component that accepts product props (id, title, price, image, etc.)
- */
+import styles from "./ProductList.module.css";
 
 const ProductList = () => {
     return (
-        <div className="product-list">
-            {data.map((item, index) => (
-                <ProductCard key={index} item={item} />
-            ))}
-        </div>
+        <>
+        
+            <header className={styles.header}>
+                <h1 className={styles.listname}>Desserts</h1>
+            </header>
+            
+            <ul className={styles.productlist}>
+                {data.map((item, index) => (
+                    <li className={styles.item} key={index}>
+                        <ProductCard item={item} />
+                    </li>
+                ))}
+            </ul>
+        </>
     );
 };
 

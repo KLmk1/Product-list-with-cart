@@ -1,16 +1,15 @@
 import styles from "./ProductCard.module.css";
+import QuantitySpoiler from "./QuantitySpoiler/QuantitySpoiler";
 
 const ProductCard = ({ item }) => {
   return (
     <article className={styles.card}>
-      <img
-        src={item.image.desktop}
-        alt={item.name}
-        className={styles.image}
-      />
+      <div className={styles.imgwrapper}>
+        <QuantitySpoiler item={item} />
+      </div>
       <div className={styles.info}>
-        <h3 className={styles.title}>{item.name}</h3>
         <p className={styles.category}>{item.category}</p>
+        <h4 className={styles.title}>{item.name}</h4>
         <p className={styles.price}>${item.price.toFixed(2)}</p>
       </div>
     </article>
