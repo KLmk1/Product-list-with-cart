@@ -4,8 +4,8 @@ import { useState } from "react";
 
 export default function QuantitySpoiler({ item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { updateQuantity, getItemById } = useCart();
-  const quantity = getItemById(item.id)?.qty || 0;
+  const { updateQuantity, getTotalQty} = useCart();
+  const quantity = getTotalQty(item.id);
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function QuantitySpoiler({ item }) {
               <button
                 className={styles.minbutton}
                 aria-label="Remove item"
-                onClick={() => updateQuantity(item.id, -1)}
+                onClick={() => updateQuantity(item, -1)}
               >
                 <img
                   src="/assets/images/icon-decrement-quantity.svg"
@@ -54,7 +54,7 @@ export default function QuantitySpoiler({ item }) {
               <button
                 className={styles.addbutton}
                 aria-label="Add item"
-                onClick={() => updateQuantity(item.id, 1)}
+                onClick={() => updateQuantity(item, 1)}
               >
                 <img
                   src="/assets/images/icon-increment-quantity.svg"

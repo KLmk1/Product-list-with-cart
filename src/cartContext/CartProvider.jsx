@@ -1,5 +1,5 @@
-import { ACTIONS, initialState, cartReducer, } from "../cartReducer/cartReducer";
-import { useReducer} from "react";
+import { useReducer } from "react";
+import { cartReducer, initialState, ACTIONS } from "../cartReducer/cartReducer";
 import { CartContext } from "./cartContext";
 
 export function CartProvider({ children }) {
@@ -9,10 +9,20 @@ export function CartProvider({ children }) {
         dispatch({ type: ACTIONS.ADD_ITEM, payload: item });
     };
 
-    const updateQuantity = (itemId, qtyChange) => {
-        dispatch({ type: ACTIONS.UPDATE_QUANTITY, payload: { id: itemId, qtyChange }});
-    };
+    const updateQuantity = (item, qtyChange) => {
+        // Если qtyChange > 0 и товара нет, добавляем его
+        const exists = state.items.find(i => i.id === item.id);
+        if (!exists && qtyChange > 0) {
+        addItemToCart({ ...item, qty: qtyChange });
+        return;
+        }
 
+        // Если есть, просто обновляем количество
+        dispatch({
+        type: ACTIONS.UPDATE_QUANTITY,
+        payload: { id: item.id, qtyChange }
+        });
+    };
     const removeItemFromCart = (item) => {
         dispatch({ type: ACTIONS.REMOVE_ITEM, payload: item });
     };
@@ -20,23 +30,21 @@ export function CartProvider({ children }) {
     const getTotalPrice = () =>
         state.items.reduce((total, item) => total + item.price * item.qty, 0);
 
-    const getTotalQty = () =>
-        state.items.reduce((total, item) => total + item.qty, 0);
-
-    const getItemById = (id) =>
-        state.items.find(item => item.id === id);
+    const getTotalQty = (id) => {
+        const found = state.items.find(item => item.id === id);
+        return found ? found.qty : 0;
+    };
 
     return (
-        <CartContext.Provider value={{ 
-            cart: state, 
+        <CartContext.Provider value={{
+            cart: state,
             addItemToCart,
             updateQuantity,
-            removeItemFromCart, 
+            removeItemFromCart,
             getTotalPrice,
             getTotalQty,
-            getItemById 
         }}>
             {children}
-        </CartContext.Provider> 
-    )
+        </CartContext.Provider>
+    );
 }

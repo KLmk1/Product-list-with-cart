@@ -13,7 +13,7 @@ const ProductList = () => {
             <ul className={styles.productlist}>
                 {data.map((item, index) => (
                     <li className={styles.item} key={index}>
-                        <ProductCard item={item} />
+                        <ProductCard item={{ ...item, id: index}} />
                     </li>
                 ))}
             </ul>

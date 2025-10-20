@@ -2,7 +2,7 @@
     border-radius: 0.5rem;
     width: 100%;
     position: relative;
-    border: solid 2px; /* прозрачная граница по умолчанию */
+    border: solid 1px; /* прозрачная граница по умолчанию */
 }
 
 .overlay {
