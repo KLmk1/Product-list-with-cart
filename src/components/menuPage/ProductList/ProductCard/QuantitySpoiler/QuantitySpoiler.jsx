@@ -1,24 +1,30 @@
+import { useCart } from "../../../../../useCart/useCart";
 import styles from "./QuantitySpoiler.module.css";
 import { useState } from "react";
 
 export default function QuantitySpoiler({ item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  const { updateQuantity, getItemById } = useCart();
+  const quantity = getItemById(item.id)?.qty || 0;
 
-  return (   
+  return (
     <>
       <img
         src={item.image.desktop}
         alt={item.name}
         className={styles.cardimage}
-        style={{ "border-color": !isHovered && !quantity ? "rgba(0,0,0,0)" : "var(--red)"}}
-                  onMouseEnter={() => setIsHovered(true)} 
-          onMouseLeave={() => setIsHovered(false)}
+        style={{ borderColor: !isHovered && !quantity ? "rgba(0,0,0,0)" : "var(--red)" }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       />
-        
-      <div className={styles.overlay} style={{ backgroundColor: !isHovered && !quantity ? "white" : "var(--red)" }} tabIndex={0} aria-label="Cart actions"
-          onMouseEnter={() => setIsHovered(true)} 
-          onMouseLeave={() => setIsHovered(false)}
+
+      <div
+        className={styles.overlay}
+        style={{ backgroundColor: !isHovered && !quantity ? "white" : "var(--red)" }}
+        tabIndex={0}
+        aria-label="Cart actions"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className={styles.spoilerwrapper}>
           {!isHovered && !quantity ? (
@@ -32,11 +38,11 @@ export default function QuantitySpoiler({ item }) {
               <h5 className={styles.spoiler}>Add to cart</h5>
             </>
           ) : (
-            <div className={styles.actions}>  
+            <div className={styles.actions}>
               <button
                 className={styles.minbutton}
                 aria-label="Remove item"
-                onClick={() => setQuantity((q) => Math.max(q - 1, 0))}
+                onClick={() => updateQuantity(item.id, -1)}
               >
                 <img
                   src="/assets/images/icon-decrement-quantity.svg"
@@ -48,7 +54,7 @@ export default function QuantitySpoiler({ item }) {
               <button
                 className={styles.addbutton}
                 aria-label="Add item"
-                onClick={() => setQuantity((q) => q + 1)}
+                onClick={() => updateQuantity(item.id, 1)}
               >
                 <img
                   src="/assets/images/icon-increment-quantity.svg"
@@ -60,6 +66,6 @@ export default function QuantitySpoiler({ item }) {
           )}
         </div>
       </div>
-    </>   
-  )
+    </>
+  );
 }
