@@ -27,20 +27,14 @@ export function cartReducer(state, action) {
                 return {...state, items: [...state.items, {...item, qty: item.qty || 1}]}
             }
         }
-        case ACTIONS.MINUS_ITEM: {
-            const exist = state.items.find( i => i.id === item.id );
-            if (exist.qty) {
-                return {
-                    ...state,
-                    items: state.items.map(i => 
-                        i.id === item.id 
-                        ? { ...i, qty: Math.max(i.qty - 1, 0)}
-                        : i
-                    )
-                }
-            } else {
-                return state;
-            }
+        case ACTIONS.UPDATE_QUANTITY: {
+        const { id, qtyChange } = action.payload;
+        return {
+            ...state,
+            items: state.items
+            .map((i) => (i.id === id ? { ...i, qty: i.qty + qtyChange } : i))
+            .filter((i) => i.qty > 0), // убираем товар если qty <= 0
+        };
         }
         case ACTIONS.REMOVE_ITEM:
             return {

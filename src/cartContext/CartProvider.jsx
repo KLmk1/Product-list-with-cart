@@ -9,8 +9,8 @@ export function CartProvider({ children }) {
         dispatch({ type: ACTIONS.ADD_ITEM, payload: item });
     };
 
-    const minusItemFromCart = (item) => {
-        dispatch({ type: ACTIONS.MINUS_ITEM, payload: item });
+    const updateQuantity = (itemId, qtyChange) => {
+        dispatch({ type: ACTIONS.UPDATE_QUANTITY, payload: { id: itemId, qtyChange }});
     };
 
     const removeItemFromCart = (item) => {
@@ -29,8 +29,8 @@ export function CartProvider({ children }) {
     return (
         <CartContext.Provider value={{ 
             cart: state, 
-            addItemToCart, 
-            minusItemFromCart, 
+            addItemToCart,
+            updateQuantity,
             removeItemFromCart, 
             getTotalPrice,
             getTotalQty,
